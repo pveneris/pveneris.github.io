@@ -1,9 +1,9 @@
 ---
 title: "Central Bank Digital Currency Spillovers"
 collection: publications
+workingpaper: true
 category: conferences
 permalink: /publication/2024-02-17-cbdc-spillovers
-date: ""
 excerpt: 'This paper analyzes the cross-border spillover effects of central bank digital currency
 (CBDC). In a two-country model of the financial accelerator, I show that the introduction
 of CBDC materially changes the international spillover effects of country-specific monetary

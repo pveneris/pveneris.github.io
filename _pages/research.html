@@ -15,13 +15,23 @@ author_profile: false
     {% if post.category != category[0] %}
       {% continue %}
     {% endif %}
-    {% unless title_shown %}
-      {% unless forloop.first %}
-  <div style="height: 40px;"></div>
-{% endunless %}
-<h2>{{ category[1].title }}</h2><hr />
-      {% assign title_shown = true %}
+    {% assign first_category = forloop.first %}
+{% assign title_shown = false %}
+{% for post in site.publications reversed %}
+  {% if post.category != category[0] %}
+    {% continue %}
+  {% endif %}
+
+  {% unless title_shown %}
+    {% unless first_category %}
+      <div style="height: 90px;"></div>
     {% endunless %}
+    <h2>{{ category[1].title }}</h2><hr />
+    {% assign title_shown = true %}
+  {% endunless %}
+
+  {% include archive-single.html %}
+{% endfor %}
     {% include archive-single.html %}
   {% endfor %}
 {% endfor %}

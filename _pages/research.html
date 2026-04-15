@@ -7,31 +7,39 @@ author_profile: false
 
 {% include base_path %}
 
-<!-- New style rendering if publication categories are defined -->
 {% if site.publication_category %}
- {% for category in site.publication_category %}
-  {% assign title_shown = false %}
-  {% for post in site.publications reversed %}
-    {% if post.category != category[0] %}
-      {% continue %}
-    {% endif %}
+
+  {% for category in site.publication_category %}
     {% assign first_category = forloop.first %}
-{% assign title_shown = false %}
-{% for post in site.publications reversed %}
-  {% if post.category != category[0] %}
-    {% continue %}
-  {% endif %}
+    {% assign title_shown = false %}
 
-  {% unless title_shown %}
-    {% unless first_category %}
-      <div style="height: 90px;"></div>
+    {% for post in site.publications reversed %}
+      {% if post.category != category[0] %}
+        {% continue %}
+      {% endif %}
+
+      {% unless title_shown %}
+        {% unless first_category %}
+          <div style="height: 70px;"></div>
+        {% endunless %}
+
+        <h2>{{ category[1].title }}</h2>
+        {% assign title_shown = true %}
+      {% endunless %}
+
+      {% include archive-single.html %}
+    {% endfor %}
+
+    {% unless forloop.last %}
+      <hr />
     {% endunless %}
-    <h2>{{ category[1].title }}</h2><hr />
-    {% assign title_shown = true %}
-  {% endunless %}
 
-  {% include archive-single.html %}
-{% endfor %}
+  {% endfor %}
+
+{% else %}
+
+  {% for post in site.publications reversed %}
     {% include archive-single.html %}
   {% endfor %}
-{% endfor %}
+
+{% endif %}

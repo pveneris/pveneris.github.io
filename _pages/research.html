@@ -16,7 +16,7 @@ author_profile: false
         {% continue %}
       {% endif %}
       {% unless title_shown %}
-       <h2 {% if title_shown %}style="margin-top:70px;"{% endif %}>{{ category[1].title }}</h2><hr />
+       <h2 {% unless forloop.first %}style="margin-top:50px;"{% endunless %}>{{ category[1].title }}</h2><hr />
         {% assign title_shown = true %}
       {% endunless %}
       {% include archive-single.html %}

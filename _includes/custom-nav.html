@@ -29,6 +29,33 @@
 
 <style>
 
+/* ==================================================
+   SHARED MASTHEAD
+   ================================================== */
+
+.masthead {
+  background: #000 !important;
+  border-bottom: 1px solid #333 !important;
+  position: relative !important;
+  width: 100% !important;
+}
+
+.masthead__inner-wrap {
+  max-width: 930px !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+}
+
+.custom-nav-wrapper {
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+/* Name on left */
+
 .custom-site-name {
   color: #ffffff !important;
   text-decoration: none !important;
@@ -38,10 +65,13 @@
   white-space: nowrap;
 }
 
+
+/* Navigation links */
+
 .custom-nav {
   display: flex;
   align-items: center;
-  gap: 42px;
+  gap: 28px;
 }
 
 .custom-nav a {
@@ -50,16 +80,55 @@
   font-size: 0.82em;
   font-weight: 600;
   letter-spacing: 0.04em;
-  padding: 10px 12px;
+  padding: 11px 10px;
+  line-height: 1;
 }
+
+
+/* Hover */
 
 .custom-nav a:hover {
-  color: #d4af37 !important;
+  color: #ffd700 !important;
 }
 
+
+/* Current page */
+
 .custom-nav a.active {
-  color: #d4af37 !important;
+  color: #ffd700 !important;
   background-color: #18170f;
+}
+
+
+/* ==================================================
+   MOBILE
+   ================================================== */
+
+@media (max-width: 700px) {
+
+  .masthead__inner-wrap {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+
+  .custom-nav-wrapper {
+    height: auto;
+    min-height: 68px;
+  }
+
+  .custom-nav {
+    gap: 8px;
+  }
+
+  .custom-nav a {
+    font-size: 0.68em;
+    padding: 8px 5px;
+  }
+
+  .custom-site-name {
+    font-size: 0.88em !important;
+  }
+
 }
 
 </style>

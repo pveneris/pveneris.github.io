@@ -235,3 +235,16 @@ body {
     opacity: 1;
   }
 }
+
+/* ==================================================
+   SPA-LIKE CONTENT TRANSITION
+   ================================================== */
+
+.custom-page-content {
+  opacity: 1;
+  transition: opacity 0.12s ease-in-out;
+}
+
+.page-loading {
+  cursor: progress;
+}

@@ -237,14 +237,29 @@ body {
 }
 
 /* ==================================================
-   SPA-LIKE CONTENT TRANSITION
+   SHARED PAGE CONTENT
    ================================================== */
 
 .custom-page-content {
-  opacity: 1;
-  transition: opacity 0.12s ease-in-out;
+  max-width: 930px;
+  margin: 0 auto;
+  padding-top: 55px;
+  padding-bottom: 80px;
 }
 
-.page-loading {
-  cursor: progress;
+/* Home and Research should not create their own outer geometry */
+.home-container,
+.research-container {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media (max-width: 700px) {
+  .custom-page-content {
+    margin-left: 18px;
+    margin-right: 18px;
+    padding-top: 40px;
+  }
 }

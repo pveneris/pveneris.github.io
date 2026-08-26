@@ -22,134 +22,125 @@
 
   {% include scripts.html %}
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
+<script>
+document.addEventListener("DOMContentLoaded", function () {
 
-      const contentContainer = document.querySelector(".custom-page-content");
+  const contentContainer = document.querySelector(".custom-page-content");
 
-      async function loadPage(url, addToHistory = true) {
+  async function loadPage(url, addToHistory = true) {
 
-        try {
+    try {
 
-          document.body.classList.add("page-loading");
+      const response = await fetch(url);
 
-          const response = await fetch(url);
-
-          if (!response.ok) {
-            window.location.href = url;
-            return;
-          }
-
-          const html = await response.text();
-
-          const parser = new DOMParser();
-          const newDocument = parser.parseFromString(html, "text/html");
-
-          const newContent =
-            newDocument.querySelector(".custom-page-content");
-
-          if (!newContent) {
-            window.location.href = url;
-            return;
-          }
-
-          contentContainer.style.opacity = "0";
-
-          setTimeout(() => {
-
-            contentContainer.innerHTML = newContent.innerHTML;
-
-            window.scrollTo({
-              top: 0,
-              behavior: "instant"
-            });
-
-            if (addToHistory) {
-              history.pushState({}, "", url);
-            }
-
-            updateActiveNavigation(url);
-
-            contentContainer.style.opacity = "1";
-
-            document.body.classList.remove("page-loading");
-
-          }, 120);
-
-        }
-
-        catch (error) {
-
-          window.location.href = url;
-
-        }
-
+      if (!response.ok) {
+        window.location.href = url;
+        return;
       }
 
+      const html = await response.text();
 
-      function updateActiveNavigation(url) {
+      const parser = new DOMParser();
+      const newDocument = parser.parseFromString(html, "text/html");
 
-        const links = document.querySelectorAll(".custom-nav a");
+      const newContent =
+        newDocument.querySelector(".custom-page-content");
 
-        links.forEach(link => {
+      if (!newContent) {
+        window.location.href = url;
+        return;
+      }
 
-          link.classList.remove("active");
+      contentContainer.classList.add("content-changing");
 
-          const href = link.getAttribute("href");
+      requestAnimationFrame(() => {
 
-          if (
-            href !== "/files/Veneris_CV.pdf" &&
-            (
-              url === href ||
-              (href !== "/" && url.startsWith(href))
-            )
-          ) {
-            link.classList.add("active");
-          }
+        contentContainer.innerHTML = newContent.innerHTML;
 
-          if (url === "/" && href === "/") {
-            link.classList.add("active");
-          }
+        if (addToHistory) {
+          history.pushState({}, "", url);
+        }
 
+        updateActiveNavigation(url);
+
+        requestAnimationFrame(() => {
+          contentContainer.classList.remove("content-changing");
         });
 
+      });
+
+    }
+
+    catch (error) {
+      window.location.href = url;
+    }
+
+  }
+
+
+  function updateActiveNavigation(url) {
+
+    const links = document.querySelectorAll(".custom-nav a");
+
+    links.forEach(link => {
+
+      link.classList.remove("active");
+
+      const href = link.getAttribute("href");
+
+      if (!href) return;
+
+      if (
+        href !== "/files/Veneris_CV.pdf" &&
+        (
+          url === href ||
+          (href !== "/" && url.startsWith(href))
+        )
+      ) {
+        link.classList.add("active");
       }
 
-
-      document.addEventListener("click", function (event) {
-
-        const link = event.target.closest(".custom-nav a");
-
-        if (!link) return;
-
-        const href = link.getAttribute("href");
-
-        if (!href) return;
-
-        if (
-          link.target === "_blank" ||
-          href.endsWith(".pdf") ||
-          href.startsWith("http")
-        ) {
-          return;
-        }
-
-        event.preventDefault();
-
-        loadPage(href);
-
-      });
-
-
-      window.addEventListener("popstate", function () {
-
-        loadPage(window.location.pathname, false);
-
-      });
+      if (url === "/" && href === "/") {
+        link.classList.add("active");
+      }
 
     });
-  </script>
 
+  }
+
+
+  document.addEventListener("click", function (event) {
+
+    const link = event.target.closest(".custom-nav a");
+
+    if (!link) return;
+
+    const href = link.getAttribute("href");
+
+    if (!href) return;
+
+    if (
+      link.target === "_blank" ||
+      href.endsWith(".pdf") ||
+      href.startsWith("http")
+    ) {
+      return;
+    }
+
+    event.preventDefault();
+
+    loadPage(href);
+
+  });
+
+
+  window.addEventListener("popstate", function () {
+    loadPage(window.location.pathname, false);
+  });
+
+});
+</script>
+  
 </body>
 
 </html>

@@ -362,11 +362,6 @@ hr {
       PhD in Economics, University of Liverpool
     </div>
 
-    <div class="profile-fields">
-      Macroeconomics · Monetary Economics · Macro-Finance
-    </div>
-
-
     <!-- ICONS -->
 
     <div class="profile-links">
@@ -379,30 +374,6 @@ hr {
       >
         <i class="fas fa-envelope"></i>
       </a>
-
-
-      <!-- CV -->
-
-      <div class="cv-group">
-
-        <a
-          href="/files/Veneris_CV.pdf"
-          title="CV"
-          target="_blank"
-        >
-          <i class="fas fa-file-alt"></i>
-        </a>
-
-        <a
-          href="/files/Veneris_CV.pdf"
-          class="cv-box"
-          title="CV"
-          target="_blank"
-        >
-          CV
-        </a>
-
-      </div>
 
 
       <!-- Google Scholar -->

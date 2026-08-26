@@ -22,125 +22,234 @@
 
   {% include scripts.html %}
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
 
-  const contentContainer = document.querySelector(".custom-page-content");
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
 
-  async function loadPage(url, addToHistory = true) {
+    const contentContainer =
+      document.querySelector(".custom-page-content");
 
-    try {
+    /*
+     * Cache pages after they have been fetched.
+     * This also lets us preload the main navigation pages.
+     */
+    const pageCache = new Map();
+
+
+    async function getPage(url) {
+
+      if (pageCache.has(url)) {
+        return pageCache.get(url);
+      }
 
       const response = await fetch(url);
 
       if (!response.ok) {
-        window.location.href = url;
-        return;
+        throw new Error("Could not load " + url);
       }
 
       const html = await response.text();
 
       const parser = new DOMParser();
-      const newDocument = parser.parseFromString(html, "text/html");
+
+      const newDocument =
+        parser.parseFromString(html, "text/html");
 
       const newContent =
         newDocument.querySelector(".custom-page-content");
 
       if (!newContent) {
-        window.location.href = url;
-        return;
+        throw new Error("Page content not found");
       }
 
-      contentContainer.classList.add("content-changing");
+      const contentHTML = newContent.innerHTML;
 
-      requestAnimationFrame(() => {
+      pageCache.set(url, contentHTML);
 
-        contentContainer.innerHTML = newContent.innerHTML;
+      return contentHTML;
 
-        if (addToHistory) {
-          history.pushState({}, "", url);
+    }
+
+
+    async function loadPage(url, addToHistory = true) {
+
+      try {
+
+        const newHTML = await getPage(url);
+
+        /*
+         * Change only the content.
+         * Masthead/navigation never gets rebuilt.
+         */
+
+        contentContainer.classList.add("content-changing");
+
+        requestAnimationFrame(function () {
+
+          contentContainer.innerHTML = newHTML;
+
+          if (addToHistory) {
+            history.pushState({}, "", url);
+          }
+
+          updateActiveNavigation(url);
+
+          requestAnimationFrame(function () {
+
+            contentContainer.classList.remove(
+              "content-changing"
+            );
+
+          });
+
+        });
+
+      }
+
+      catch (error) {
+
+        /*
+         * Normal browser navigation as fallback.
+         */
+
+        window.location.href = url;
+
+      }
+
+    }
+
+
+    function updateActiveNavigation(url) {
+
+      const links =
+        document.querySelectorAll(".custom-nav a");
+
+      links.forEach(function (link) {
+
+        link.classList.remove("active");
+
+        const href =
+          link.getAttribute("href");
+
+        if (!href) return;
+
+        if (
+          href === "/files/Veneris_CV.pdf"
+        ) {
+          return;
         }
 
-        updateActiveNavigation(url);
+        if (
+          url === href ||
+          (
+            href !== "/" &&
+            url.startsWith(href)
+          )
+        ) {
 
-        requestAnimationFrame(() => {
-          contentContainer.classList.remove("content-changing");
-        });
+          link.classList.add("active");
+
+        }
+
+        if (
+          url === "/" &&
+          href === "/"
+        ) {
+
+          link.classList.add("active");
+
+        }
 
       });
 
     }
 
-    catch (error) {
-      window.location.href = url;
-    }
 
-  }
+    /*
+     * Intercept only navigation-menu clicks.
+     */
 
+    document.addEventListener(
+      "click",
+      function (event) {
 
-  function updateActiveNavigation(url) {
+        const link =
+          event.target.closest(".custom-nav a");
 
-    const links = document.querySelectorAll(".custom-nav a");
+        if (!link) return;
 
-    links.forEach(link => {
+        const href =
+          link.getAttribute("href");
 
-      link.classList.remove("active");
+        if (!href) return;
 
-      const href = link.getAttribute("href");
+        /*
+         * Do not intercept PDFs/external links.
+         */
 
-      if (!href) return;
+        if (
+          link.target === "_blank" ||
+          href.endsWith(".pdf") ||
+          href.startsWith("http")
+        ) {
+          return;
+        }
 
-      if (
-        href !== "/files/Veneris_CV.pdf" &&
-        (
-          url === href ||
-          (href !== "/" && url.startsWith(href))
-        )
-      ) {
-        link.classList.add("active");
+        event.preventDefault();
+
+        loadPage(href);
+
       }
+    );
 
-      if (url === "/" && href === "/") {
-        link.classList.add("active");
+
+    /*
+     * Browser back / forward buttons.
+     */
+
+    window.addEventListener(
+      "popstate",
+      function () {
+
+        loadPage(
+          window.location.pathname,
+          false
+        );
+
+      }
+    );
+
+
+    /*
+     * PRELOAD main pages.
+     *
+     * This is important for the seamless feeling:
+     * the pages are normally already downloaded
+     * before you click them.
+     */
+
+    const pagesToPreload = [
+      "/",
+      "/research/",
+      "/publications/",
+      "/teaching/"
+    ];
+
+    pagesToPreload.forEach(function (url) {
+
+      if (url !== window.location.pathname) {
+
+        getPage(url).catch(function () {
+          /* Ignore preload failures */
+        });
+
       }
 
     });
 
-  }
-
-
-  document.addEventListener("click", function (event) {
-
-    const link = event.target.closest(".custom-nav a");
-
-    if (!link) return;
-
-    const href = link.getAttribute("href");
-
-    if (!href) return;
-
-    if (
-      link.target === "_blank" ||
-      href.endsWith(".pdf") ||
-      href.startsWith("http")
-    ) {
-      return;
-    }
-
-    event.preventDefault();
-
-    loadPage(href);
-
   });
+  </script>
 
-
-  window.addEventListener("popstate", function () {
-    loadPage(window.location.pathname, false);
-  });
-
-});
-</script>
-  
 </body>
 
 </html>

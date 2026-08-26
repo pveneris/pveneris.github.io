@@ -40,3 +40,153 @@
     "vendor/font-awesome/brands",
     "vendor/magnific-popup/magnific-popup"
 ;
+
+
+/* ==================================================
+   PANAGIOTIS VENERIS — GLOBAL SITE STYLING
+   ================================================== */
+
+
+/* -------------------------
+   GLOBAL DARK THEME
+   ------------------------- */
+
+html,
+body {
+  background-color: #000 !important;
+  color: #e6e6e6 !important;
+}
+
+#main,
+.page,
+.page__inner-wrap,
+.page__content,
+.initial-content {
+  background-color: #000 !important;
+}
+
+
+/* -------------------------
+   SHARED MASTHEAD
+   ------------------------- */
+
+.masthead {
+  background-color: #000 !important;
+  border-bottom: 1px solid #333 !important;
+}
+
+.masthead__inner-wrap {
+  max-width: 930px !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+}
+
+.custom-nav-wrapper {
+  max-width: 930px;
+  height: 70px;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+/* Name */
+
+.custom-site-name {
+  color: #ffffff !important;
+  text-decoration: none !important;
+  font-size: 1.05em !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  white-space: nowrap;
+}
+
+
+/* Navigation */
+
+.custom-nav {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+}
+
+.custom-nav a {
+  color: #ffffff !important;
+  text-decoration: none !important;
+
+  font-size: 0.82em;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+
+  padding: 10px 8px;
+}
+
+.custom-nav a:hover {
+  color: #ffd700 !important;
+}
+
+.custom-nav a.active {
+  color: #ffd700 !important;
+  background-color: #18170f;
+}
+
+
+/* -------------------------
+   GLOBAL LINKS
+   ------------------------- */
+
+.page__content a {
+  color: #4da3c7;
+  text-decoration: none;
+}
+
+.page__content a:hover {
+  color: #79c4e3;
+  text-decoration: none;
+}
+
+
+/* -------------------------
+   GLOBAL PAGE WIDTH
+   ------------------------- */
+
+.page__inner-wrap {
+  max-width: 930px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+
+/* -------------------------
+   MOBILE
+   ------------------------- */
+
+@media (max-width: 700px) {
+
+  .masthead__inner-wrap {
+    padding-left: 18px !important;
+    padding-right: 18px !important;
+  }
+
+  .custom-nav-wrapper {
+    height: auto;
+    min-height: 68px;
+  }
+
+  .custom-nav {
+    gap: 8px;
+  }
+
+  .custom-nav a {
+    font-size: 0.68em;
+    padding: 8px 5px;
+  }
+
+  .custom-site-name {
+    font-size: 0.88em !important;
+  }
+
+}

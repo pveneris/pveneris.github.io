@@ -3,132 +3,522 @@ layout: splash
 title: ""
 permalink: /
 ---
- 
-<!-- HEADER CONTAINER -->
-<div style="display: flex; align-items: center; gap: 30px; margin-top: 20px;">
- 
-  <!-- LEFT: PHOTO -->
-<div style="flex-shrink: 0;">
-<img src="/images/panosven_picture.png" alt="Profile photo" width="180" style="border-radius: 50%;" />
-</div>
- 
-  <!-- RIGHT: NAME, POSITION, RESEARCH -->
-<div>
- 
-    <!-- Name -->
-<h1 style="margin-bottom: 10px;">Panagiotis Veneris</h1>
- 
-    <!-- Position -->
-<div style="font-size: 1.05em; margin-bottom: 6px;">
+
+<style>
+
+/* ==================================================
+   GLOBAL DARK THEME
+   ================================================== */
+
+html,
+body {
+  background-color: #000 !important;
+  color: #e6e6e6 !important;
+}
+
+#main,
+.page,
+.page__inner-wrap,
+.page__content,
+.initial-content {
+  background-color: #000 !important;
+}
+
+/* Navigation bar */
+.masthead,
+.masthead__inner-wrap,
+.greedy-nav,
+.greedy-nav .visible-links {
+  background-color: #000 !important;
+}
+
+.greedy-nav a,
+.site-title,
+.masthead a {
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+/* General links */
+.page__content a {
+  color: #4da3c7;
+  text-decoration: none;
+}
+
+.page__content a:hover {
+  color: #79c4e3;
+  text-decoration: none;
+}
+
+/* Horizontal rules */
+hr {
+  border: 0;
+  border-top: 1px solid #333 !important;
+}
+
+
+/* ==================================================
+   MAIN HOMEPAGE CONTAINER
+   ================================================== */
+
+.home-container {
+  max-width: 930px;
+  margin: 0 auto;
+}
+
+
+/* ==================================================
+   PROFILE
+   ================================================== */
+
+.profile-section {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+  margin-top: 25px;
+  margin-bottom: 30px;
+}
+
+.profile-photo {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.profile-info h1 {
+  margin: 0 0 10px 0;
+  color: #ffffff !important;
+  font-weight: 700;
+}
+
+.profile-position {
+  font-size: 1.05em;
+  margin-bottom: 6px;
+  color: #e6e6e6;
+}
+
+.profile-fields {
+  font-size: 1em;
+  color: #b8b8b8;
+  margin-bottom: 18px;
+}
+
+
+/* ==================================================
+   PROFILE LINKS / ICONS
+   ================================================== */
+
+.profile-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 28px;
+  font-size: 1.25em;
+}
+
+.profile-links a {
+  color: #4da3c7;
+  text-decoration: none;
+}
+
+.profile-links a:hover {
+  color: #79c4e3;
+  text-decoration: none;
+}
+
+.cv-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cv-box {
+  border: 2px solid #4da3c7;
+  padding: 1px 7px;
+  border-radius: 6px;
+  font-size: 0.65em;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+
+/* ==================================================
+   BIO
+   ================================================== */
+
+.bio-section {
+  max-width: 900px;
+  line-height: 1.65;
+  text-align: justify;
+  margin-top: 20px;
+}
+
+.bio-section p {
+  color: #e6e6e6;
+  font-size: 0.95em;
+  margin-top: 14px;
+}
+
+
+/* ==================================================
+   SECTION HEADINGS
+   ================================================== */
+
+.section-title {
+  margin-top: 48px;
+  margin-bottom: 20px;
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+
+/* ==================================================
+   RESEARCH INTERESTS
+   ================================================== */
+
+.interests-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px 60px;
+  margin-bottom: 50px;
+}
+
+.interest-item {
+  color: #e6e6e6;
+  font-size: 0.98em;
+}
+
+
+/* ==================================================
+   FEATURE BLOCKS
+   ================================================== */
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-top: 15px;
+  margin-bottom: 50px;
+}
+
+.feature-block h3 {
+  color: #ffffff !important;
+  margin-top: 0;
+  margin-bottom: 10px;
+  border-bottom: none !important;
+}
+
+.feature-block p {
+  color: #cfcfcf;
+  line-height: 1.55;
+  font-size: 0.92em;
+  margin-bottom: 12px;
+}
+
+.feature-link {
+  color: #4da3c7 !important;
+  text-decoration: none !important;
+  font-weight: 600;
+}
+
+.feature-link:hover {
+  color: #79c4e3 !important;
+}
+
+
+/* ==================================================
+   MOBILE
+   ================================================== */
+
+@media (max-width: 700px) {
+
+  .home-container {
+    width: 100%;
+  }
+
+  .profile-section {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .profile-photo {
+    width: 145px;
+    height: 145px;
+  }
+
+  .interests-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+}
+
+</style>
+
+
+<div class="home-container">
+
+
+<!-- ==================================================
+     PROFILE
+     ================================================== -->
+
+<div class="profile-section">
+
+  <img
+    src="/images/panosven_picture.png"
+    alt="Panagiotis Veneris"
+    class="profile-photo"
+  >
+
+  <div class="profile-info">
+
+    <h1>Panagiotis Veneris</h1>
+
+    <div class="profile-position">
       PhD in Economics, University of Liverpool
-</div>
- 
-    <!-- Research interests -->
-<div style="font-size: 1em; color: #555; margin-bottom: 6px;">
+    </div>
+
+    <div class="profile-fields">
       Macroeconomics · Monetary Economics · Macro-Finance
-</div>
- 
+    </div>
+
+
+    <!-- ICONS -->
+
+    <div class="profile-links">
+
+      <!-- Email -->
+      <a
+        href="mailto:pveneris@hotmail.gr"
+        title="Email"
+      >
+        <i class="fas fa-envelope"></i>
+      </a>
+
+
+      <!-- CV -->
+      <div class="cv-group">
+
+        <a
+          href="/files/Veneris_CV.pdf"
+          title="CV"
+          target="_blank"
+        >
+          <i class="fas fa-file-alt"></i>
+        </a>
+
+        <a
+          href="/files/Veneris_CV.pdf"
+          class="cv-box"
+          title="CV"
+          target="_blank"
+        >
+          CV
+        </a>
+
+      </div>
+
+
+      <!-- Google Scholar -->
+      <a
+        href="YOUR_GOOGLE_SCHOLAR_URL"
+        title="Google Scholar"
+        target="_blank"
+      >
+        <i class="fas fa-graduation-cap"></i>
+      </a>
+
+
+      <!-- Twitter -->
+      <a
+        href="https://x.com/PanagiotisVene1"
+        title="Twitter / X"
+        target="_blank"
+      >
+        <i class="fab fa-twitter"></i>
+      </a>
+
+
+      <!-- GitHub -->
+      <a
+        href="https://github.com/pveneris/NumericalMethods"
+        title="GitHub"
+        target="_blank"
+      >
+        <i class="fab fa-github"></i>
+      </a>
+
+    </div>
+
   </div>
- 
+
 </div>
- 
- 
-<!-- ICON ROW BELOW HEADER -->
-<div style="
-  text-align:left;
-  font-size: 1.4em;
-  margin-top: 2px;      /* Very small gap */
-  margin-left: 210px;   /* Align under name */
-  display:flex;
-  align-items:center;
-  gap:60px;             /* Space between icon groups */
-">
- 
-<!-- Email -->
-<a href="mailto:pveneris@hotmail.gr" title="Email">
-<i class="fas fa-envelope"></i>
-</a>
- 
-  <!-- Unified CV block -->
-<div style="display:flex; align-items:center; gap:4px;">
- 
-    <!-- File icon -->
-<a href="/files/Veneris_CV.pdf" title="CV" style="text-decoration:none;">
-<i class="fas fa-file-alt" style="font-size:0.9em;"></i>
-</a>
- 
-    <!-- CV box -->
-<a href="/files/Veneris_CV.pdf"
-       style="
-         border: 2px solid #0b3bfc;
-         padding: 1px 8px;
-         border-radius: 6px;
-         font-weight: 600;
-         text-decoration: none;
-         font-size: 0.7em;
-       ">
-       CV
-</a>
- 
+
+
+<hr>
+
+
+<!-- ==================================================
+     BIO
+     ================================================== -->
+
+<div class="bio-section">
+
+  <p>
+    Hi, and welcome! I am on the job market.
+  </p>
+
+  <p>
+    My research interests lie in the area of quantitative macroeconomics,
+    with a special interest in monetary policy, macro-finance, and
+    international economics. In my research, I develop general equilibrium
+    models to quantify the effects of central bank policies on aggregate
+    outcomes.
+  </p>
+
+  <p>
+    I recently completed my PhD in Economics at the University of Liverpool,
+    supervised by
+    <a
+      href="https://sites.google.com/site/oliverdegroot/"
+      target="_blank"
+    >
+      Oliver de Groot
+    </a>
+    and
+    <a
+      href="https://luhan.io/"
+      target="_blank"
+    >
+      Lu Han
+    </a>.
+  </p>
+
+  <p>
+    Over the years, I have conducted research at the Bank of Greece,
+    the European Central Bank, and the Bank of Lithuania.
+  </p>
+
+</div>
+
+
+<!-- ==================================================
+     RESEARCH INTERESTS
+     ================================================== -->
+
+<h2 class="section-title">
+  Research Interests
+</h2>
+
+<div class="interests-grid">
+
+  <div class="interest-item">
+    Quantitative Macroeconomics
   </div>
- 
-  <!-- Scholar -->
-<a href="YOUR_GOOGLE_SCHOLAR_URL" title="Google Scholar">
-<i class="fas fa-graduation-cap"></i>
-</a>
- 
-  <!-- Twitter -->
-<a href="https://x.com/PanagiotisVene1" title="Twitter" target="_blank">
-<i class="fab fa-twitter"></i>
-</a>
- 
- 
-  <!-- GitHub -->
-<a href="https://github.com/pveneris/NumericalMethods" title="Code" target="_blank">
-<i class="fab fa-github"></i>
-</a>
+
+  <div class="interest-item">
+    Monetary Economics
+  </div>
+
+  <div class="interest-item">
+    Macro-Finance
+  </div>
+
+  <div class="interest-item">
+    Monetary Policy
+  </div>
+
+  <div class="interest-item">
+    International Economics
+  </div>
+
+  <div class="interest-item">
+    Financial Frictions
+  </div>
+
 </div>
- 
- 
-<br>
-<hr style="margin-top: 10px; margin-bottom: 25px;">
- 
-<!-- BIO SECTION -->
-<div style="max-width: 900px; margin-top: 25px; text-align: justify; text-justify: inter-word;">
-<p style="font-size: 0.9em;">
-Hi, and welcome! I am on the job market.
-</p>
 
-<p style="font-size: 0.9em; margin-top: 15px;">
-My research interests lie in the area of quantitative macroeconomics, with a special interest in monetary policy, macro-finance, and international economics. In my research, I develop general equilibrium models to quantify the effects of central bank policies on aggregate outcomes.
-</p>
 
-<p style="font-size: 0.9em; margin-top: 15px;">
-I recently completed my PhD in Economics at the University of Liverpool, supervised by <a href="https://sites.google.com/site/oliverdegroot/" style="color:#0066cc; text-decoration:none;">
-Oliver de Groot
-</a> and <a href="https://luhan.io/" style="color:#0066cc; text-decoration:none;">
-Lu Han
-</a>.
-</p>
+<!-- ==================================================
+     FEATURE SECTIONS
+     ================================================== -->
 
-<p style="font-size: 0.9em; margin-top: 15px;">
-Over the years, I have conducted research at the Bank of Greece,
-the European Central Bank, and the Bank of Lithuania.
- </p>
- 
- </div>
- 
----
- 
-## Selected Research
- 
-**Paper Title 1**, with Coauthors  
-Short description.  
-[Paper](#) · [Appendix](#) · [Citation](#)
- 
-**Paper Title 2**, with Coauthors  
-Short description.  
-[Paper](#)
- 
-**New:** **Paper Title 3**, with Coauthors  
-Short description.
+<div class="feature-grid">
+
+
+  <!-- RECENT WORK -->
+
+  <div class="feature-block">
+
+    <h3>Recent Work</h3>
+
+    <p>
+      My current work studies central bank digital currencies,
+      financial frictions, and international spillovers.
+    </p>
+
+    <a
+      href="/research/"
+      class="feature-link"
+    >
+      View Working Papers →
+    </a>
+
+  </div>
+
+
+  <!-- RESEARCH -->
+
+  <div class="feature-block">
+
+    <h3>Research</h3>
+
+    <p>
+      My research spans quantitative macroeconomics,
+      monetary economics, macro-finance, and international economics.
+    </p>
+
+    <a
+      href="/research/"
+      class="feature-link"
+    >
+      View Research →
+    </a>
+
+  </div>
+
+
+  <!-- TEACHING -->
+
+  <div class="feature-block">
+
+    <h3>Teaching</h3>
+
+    <p>
+      Teaching materials and information related to economics
+      and quantitative methods.
+    </p>
+
+    <a
+      href="/teaching/"
+      class="feature-link"
+    >
+      View Teaching →
+    </a>
+
+  </div>
+
+
+</div>
+
+</div>

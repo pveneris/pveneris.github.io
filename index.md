@@ -207,7 +207,7 @@ hr {
   margin-bottom: 20px;
   border-bottom: none !important;
   padding-bottom: 0 !important;
-  color: #ffffff !important;
+  color: #ffd700 !important;
   font-weight: 600;
 }
 

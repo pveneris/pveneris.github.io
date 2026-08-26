@@ -51,7 +51,14 @@
    GLOBAL DARK THEME
    ================================================== */
 
-html,
+html {
+  background-color: #000 !important;
+  color: #e6e6e6 !important;
+
+  /* Prevent horizontal jump when scrollbar appears/disappears */
+  scrollbar-gutter: stable;
+}
+
 body {
   background-color: #000 !important;
   color: #e6e6e6 !important;

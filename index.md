@@ -2,7 +2,6 @@
 layout: custom
 title: ""
 permalink: /
-author_profile: false
 ---
 
 <style>

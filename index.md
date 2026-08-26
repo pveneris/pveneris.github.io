@@ -86,10 +86,17 @@ hr {
   font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+  padding: 10px 8px;
 }
 
+/* Yellow when hovering */
 .custom-nav-links a:hover {
-  color: #4da3c7 !important;
+  color: #ffd700 !important;
+}
+
+/* Yellow for the currently selected page */
+.custom-nav-links a.active {
+  color: #ffd700 !important;
 }
 
 
@@ -333,15 +340,23 @@ hr {
 
     <div class="custom-nav-links">
 
-      <a href="/research/">
+      <a href="/"
+         class="{% if page.url == '/' %}active{% endif %}">
+        Home
+      </a>
+
+      <a href="/research/"
+         class="{% if page.url == '/research/' %}active{% endif %}">
         Research
       </a>
 
-      <a href="/research/">
+      <a href="/publications/"
+         class="{% if page.url == '/publications/' %}active{% endif %}">
         Publications
       </a>
 
-      <a href="/teaching/">
+      <a href="/teaching/"
+         class="{% if page.url == '/teaching/' %}active{% endif %}">
         Teaching
       </a>
 

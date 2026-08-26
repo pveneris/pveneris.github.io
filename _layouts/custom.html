@@ -1,1 +1,57 @@
+---
+---
 
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  {% include head.html %}
+
+</head>
+
+<body>
+
+  <!-- ============================================
+       COMMON NAVIGATION
+       ============================================ -->
+
+  <div class="masthead">
+    <div class="masthead__inner-wrap">
+      <div class="masthead__menu">
+
+        <a class="custom-site-name" href="/">
+          Panagiotis Veneris
+        </a>
+
+        {% include custom-nav.html %}
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ============================================
+       PAGE CONTENT
+       ============================================ -->
+
+  <div id="main" role="main">
+
+    <div class="custom-page-content">
+
+      {{ content }}
+
+    </div>
+
+  </div>
+
+
+  <!-- ============================================
+       THEME SCRIPTS
+       ============================================ -->
+
+  {% include scripts.html %}
+
+</body>
+
+</html>

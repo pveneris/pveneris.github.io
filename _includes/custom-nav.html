@@ -1,1 +1,58 @@
+<nav class="custom-nav">
 
+  <a href="/"
+     class="{% if page.url == '/' %}active{% endif %}">
+    HOME
+  </a>
+
+  <a href="/research/"
+     class="{% if page.url contains '/research' %}active{% endif %}">
+    RESEARCH
+  </a>
+
+  <a href="/publications/"
+     class="{% if page.url contains '/publications' %}active{% endif %}">
+    PUBLICATIONS
+  </a>
+
+  <a href="/teaching/"
+     class="{% if page.url contains '/teaching' %}active{% endif %}">
+    TEACHING
+  </a>
+
+  <a href="/files/Veneris_CV.pdf"
+     target="_blank">
+    VITAE
+  </a>
+
+</nav>
+
+<style>
+
+.custom-nav {
+  display: flex;
+  align-items: center;
+  gap: 42px;
+}
+
+.custom-nav a {
+  color: #ffffff !important;
+  text-decoration: none !important;
+  font-size: 0.82em;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 10px 12px;
+}
+
+/* Yellow when hovering */
+.custom-nav a:hover {
+  color: #d4af37 !important;
+}
+
+/* Yellow for current page */
+.custom-nav a.active {
+  color: #d4af37 !important;
+  background-color: #18170f;
+}
+
+</style>

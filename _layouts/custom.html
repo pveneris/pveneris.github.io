@@ -5,51 +5,24 @@
 <html lang="en">
 
 <head>
-
   {% include head.html %}
-
 </head>
 
 <body>
 
-  <!-- ============================================
-       COMMON NAVIGATION
-       ============================================ -->
+  <!-- Shared navigation/header -->
+  {% include masthead.html %}
 
-  <div class="masthead">
-    <div class="masthead__inner-wrap">
-      <div class="masthead__menu">
-
-        <a class="custom-site-name" href="/">
-          Panagiotis Veneris
-        </a>
-
-        {% include custom-nav.html %}
-
-      </div>
-    </div>
-  </div>
-
-
-  <!-- ============================================
-       PAGE CONTENT
-       ============================================ -->
-
+  <!-- Page content -->
   <div id="main" role="main">
 
     <div class="custom-page-content">
-
       {{ content }}
-
     </div>
 
   </div>
 
-
-  <!-- ============================================
-       THEME SCRIPTS
-       ============================================ -->
-
+  <!-- Theme scripts -->
   {% include scripts.html %}
 
 </body>

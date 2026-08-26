@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: custom
 title: ""
 permalink: /
 author_profile: false

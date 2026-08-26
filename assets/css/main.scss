@@ -43,32 +43,26 @@
 
 
 /* ==================================================
-   PANAGIOTIS VENERIS — GLOBAL SITE STYLING
-   ================================================== */
-
-
-/* ==================================================
    GLOBAL DARK THEME
    ================================================== */
 
 html {
   background-color: #000 !important;
   color: #e6e6e6 !important;
-
-  /* Prevent horizontal jump when scrollbar appears/disappears */
   scrollbar-gutter: stable;
 }
 
 body {
   background-color: #000 !important;
   color: #e6e6e6 !important;
+  margin: 0;
 }
 
-#main,
 .page,
 .page__inner-wrap,
 .page__content,
 .initial-content,
+.custom-site-main,
 .custom-page-content {
   background-color: #000 !important;
 }
@@ -79,22 +73,23 @@ body {
    ================================================== */
 
 .masthead {
+  width: 100% !important;
   background-color: #000 !important;
   border-bottom: 1px solid #333 !important;
-  width: 100% !important;
 }
 
 .masthead__inner-wrap {
+  width: calc(100% - 40px) !important;
   max-width: 930px !important;
-  margin: 0 auto !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
   padding: 0 !important;
 }
 
 .custom-nav-wrapper {
   width: 100%;
-  max-width: 930px;
   height: 70px;
-  margin: 0 auto;
+  margin: 0;
 
   display: flex;
   align-items: center;
@@ -168,18 +163,34 @@ a {
 
 
 /* ==================================================
+   CUSTOM MAIN LAYOUT
+   ================================================== */
+
+.custom-site-main {
+  display: block !important;
+
+  width: 100% !important;
+  max-width: none !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  float: none !important;
+  clear: both !important;
+
+  position: relative !important;
+
+  background-color: #000 !important;
+}
+
+
+/* ==================================================
    SHARED PAGE CONTENT
    ================================================== */
 
-#main {
-  width: 100% !important;
-  max-width: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  float: none !important;
-}
-
 .custom-page-content {
+  display: block;
+
   width: calc(100% - 40px) !important;
   max-width: 930px !important;
 
@@ -191,19 +202,11 @@ a {
 
   box-sizing: border-box;
 
+  background-color: #000 !important;
+
   opacity: 1;
   transition: opacity 0.08s ease;
 }
-
-.home-container,
-.research-container {
-  width: 100% !important;
-  max-width: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* Very subtle content swap */
 
 .custom-page-content.content-changing {
   opacity: 0.92;
@@ -214,17 +217,15 @@ a {
    PAGE-SPECIFIC OUTER WRAPPERS
    ================================================== */
 
-/*
-   Home and Research must not define their own
-   outer width or vertical position.
-*/
-
 .home-container,
 .research-container {
-  width: 100%;
-  max-width: none;
-  margin: 0;
-  padding: 0;
+  display: block;
+
+  width: 100% !important;
+  max-width: none !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 
@@ -245,9 +246,13 @@ hr {
 @media (max-width: 700px) {
 
   .masthead__inner-wrap {
-    padding-left: 18px !important;
-    padding-right: 18px !important;
-    box-sizing: border-box;
+    width: calc(100% - 36px) !important;
+    max-width: 930px !important;
+
+    margin-left: auto !important;
+    margin-right: auto !important;
+
+    padding: 0 !important;
   }
 
   .custom-nav-wrapper {
@@ -268,12 +273,15 @@ hr {
     font-size: 0.88em !important;
   }
 
- .custom-page-content {
-  width: calc(100% - 36px) !important;
-  max-width: 930px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  padding: 40px 0 70px 0;
-}
+  .custom-page-content {
+    width: calc(100% - 36px) !important;
+    max-width: 930px !important;
+
+    margin-left: auto !important;
+    margin-right: auto !important;
+
+    padding-top: 40px;
+    padding-bottom: 70px;
+  }
 
 }

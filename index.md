@@ -25,11 +25,6 @@ body {
   background-color: #000 !important;
 }
 
-/* Hide original theme navigation */
-.masthead {
-  display: none !important;
-}
-
 /* General links */
 .page__content a {
   color: #4da3c7;

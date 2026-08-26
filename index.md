@@ -8,42 +8,6 @@ author_profile: false
 <style>
 
 /* ==================================================
-   GLOBAL DARK THEME
-   ================================================== */
-
-html,
-body {
-  background-color: #000 !important;
-  color: #e6e6e6 !important;
-}
-
-#main,
-.page,
-.page__inner-wrap,
-.page__content,
-.initial-content {
-  background-color: #000 !important;
-}
-
-/* General links */
-.page__content a {
-  color: #4da3c7;
-  text-decoration: none;
-}
-
-.page__content a:hover {
-  color: #79c4e3;
-  text-decoration: none;
-}
-
-/* Horizontal rules */
-hr {
-  border: 0;
-  border-top: 1px solid #333 !important;
-}
-
-
-/* ==================================================
    MAIN HOMEPAGE CONTAINER
    ================================================== */
 

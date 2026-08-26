@@ -5,10 +5,10 @@
  * This file controls what is imported from /_sass
  *
  * Note that the files are processed in the order they are imported, so they are partly
-   sorted by the dependencies. Also, the first two lines of the file are required by Jekyll.
+ * sorted by the dependencies. Also, the first two lines of the file are required by Jekyll.
  */
 
-@import 
+@import
     "vendor/breakpoint/breakpoint",
 
     "themes",
@@ -34,7 +34,7 @@
     "layout/page",
     "layout/archive",
     "layout/sidebar",
-    
+
     "vendor/font-awesome/fontawesome",
     "vendor/font-awesome/solid",
     "vendor/font-awesome/brands",
@@ -47,9 +47,9 @@
    ================================================== */
 
 
-/* -------------------------
+/* ==================================================
    GLOBAL DARK THEME
-   ------------------------- */
+   ================================================== */
 
 html,
 body {
@@ -61,18 +61,20 @@ body {
 .page,
 .page__inner-wrap,
 .page__content,
-.initial-content {
+.initial-content,
+.custom-page-content {
   background-color: #000 !important;
 }
 
 
-/* -------------------------
+/* ==================================================
    SHARED MASTHEAD
-   ------------------------- */
+   ================================================== */
 
 .masthead {
   background-color: #000 !important;
   border-bottom: 1px solid #333 !important;
+  width: 100% !important;
 }
 
 .masthead__inner-wrap {
@@ -82,6 +84,7 @@ body {
 }
 
 .custom-nav-wrapper {
+  width: 100%;
   max-width: 930px;
   height: 70px;
   margin: 0 auto;
@@ -92,7 +95,9 @@ body {
 }
 
 
-/* Name */
+/* ==================================================
+   SITE NAME
+   ================================================== */
 
 .custom-site-name {
   color: #ffffff !important;
@@ -104,7 +109,9 @@ body {
 }
 
 
-/* Navigation */
+/* ==================================================
+   NAVIGATION
+   ================================================== */
 
 .custom-nav {
   display: flex;
@@ -134,41 +141,95 @@ body {
 }
 
 
-/* -------------------------
+/* ==================================================
    GLOBAL LINKS
-   ------------------------- */
+   ================================================== */
 
-.page__content a {
+a {
+  text-decoration: none;
+}
+
+.custom-page-content a {
   color: #4da3c7;
   text-decoration: none;
 }
 
-.page__content a:hover {
+.custom-page-content a:hover {
   color: #79c4e3;
   text-decoration: none;
 }
 
 
-/* -------------------------
-   GLOBAL PAGE WIDTH
-   ------------------------- */
+/* ==================================================
+   SHARED PAGE CONTENT
+   ================================================== */
 
-.page__inner-wrap {
+#main {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.custom-page-content {
+  width: 100%;
   max-width: 930px;
-  margin-left: auto !important;
-  margin-right: auto !important;
+  margin: 0 auto;
+
+  padding-top: 55px;
+  padding-bottom: 80px;
+
+  box-sizing: border-box;
+
+  opacity: 1;
+  transition: opacity 0.08s ease;
 }
 
 
-/* -------------------------
+/* Very subtle content swap */
+
+.custom-page-content.content-changing {
+  opacity: 0.92;
+}
+
+
+/* ==================================================
+   PAGE-SPECIFIC OUTER WRAPPERS
+   ================================================== */
+
+/*
+   Home and Research must not define their own
+   outer width or vertical position.
+*/
+
+.home-container,
+.research-container {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ==================================================
+   HORIZONTAL RULES
+   ================================================== */
+
+hr {
+  border: 0;
+  border-top: 1px solid #333 !important;
+}
+
+
+/* ==================================================
    MOBILE
-   ------------------------- */
+   ================================================== */
 
 @media (max-width: 700px) {
 
   .masthead__inner-wrap {
     padding-left: 18px !important;
     padding-right: 18px !important;
+    box-sizing: border-box;
   }
 
   .custom-nav-wrapper {
@@ -189,77 +250,15 @@ body {
     font-size: 0.88em !important;
   }
 
-}
-
-
-/* ==================================================
-   SMOOTH PAGE TRANSITIONS
-   ================================================== */
-
-@view-transition {
-  navigation: auto;
-}
-
-.masthead {
-  view-transition-name: site-header;
-}
-
-#main {
-  view-transition-name: page-content;
-}
-
-::view-transition-old(page-content) {
-  animation: 0.15s ease-out both fade-out;
-}
-
-::view-transition-new(page-content) {
-  animation: 0.20s ease-in both fade-in;
-}
-
-@keyframes fade-out {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-/* ==================================================
-   SHARED PAGE CONTENT
-   ================================================== */
-
-.custom-page-content {
-  max-width: 930px;
-  margin: 0 auto;
-  padding-top: 55px;
-  padding-bottom: 80px;
-}
-
-/* Home and Research should not create their own outer geometry */
-.home-container,
-.research-container {
-  width: 100%;
-  max-width: none;
-  margin: 0;
-  padding: 0;
-}
-
-@media (max-width: 700px) {
   .custom-page-content {
-    margin-left: 18px;
-    margin-right: 18px;
-    padding-top: 40px;
+    max-width: none;
+    margin: 0;
+    padding:
+
+      40px
+      18px
+      70px
+      18px;
   }
+
 }

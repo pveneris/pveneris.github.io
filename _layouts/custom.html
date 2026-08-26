@@ -12,16 +12,15 @@
 
   {% include masthead.html %}
 
-  <div id="main" role="main">
+  <main class="custom-site-main">
 
     <div class="custom-page-content">
       {{ content }}
     </div>
 
-  </div>
+  </main>
 
   {% include scripts.html %}
-
 
   <script>
   document.addEventListener("DOMContentLoaded", function () {
@@ -29,10 +28,6 @@
     const contentContainer =
       document.querySelector(".custom-page-content");
 
-    /*
-     * Cache pages after they have been fetched.
-     * This also lets us preload the main navigation pages.
-     */
     const pageCache = new Map();
 
 
@@ -67,7 +62,6 @@
       pageCache.set(url, contentHTML);
 
       return contentHTML;
-
     }
 
 
@@ -76,11 +70,6 @@
       try {
 
         const newHTML = await getPage(url);
-
-        /*
-         * Change only the content.
-         * Masthead/navigation never gets rebuilt.
-         */
 
         contentContainer.classList.add("content-changing");
 
@@ -95,11 +84,7 @@
           updateActiveNavigation(url);
 
           requestAnimationFrame(function () {
-
-            contentContainer.classList.remove(
-              "content-changing"
-            );
-
+            contentContainer.classList.remove("content-changing");
           });
 
         });
@@ -107,13 +92,7 @@
       }
 
       catch (error) {
-
-        /*
-         * Normal browser navigation as fallback.
-         */
-
         window.location.href = url;
-
       }
 
     }
@@ -128,14 +107,11 @@
 
         link.classList.remove("active");
 
-        const href =
-          link.getAttribute("href");
+        const href = link.getAttribute("href");
 
         if (!href) return;
 
-        if (
-          href === "/files/Veneris_CV.pdf"
-        ) {
+        if (href === "/files/Veneris_CV.pdf") {
           return;
         }
 
@@ -146,18 +122,11 @@
             url.startsWith(href)
           )
         ) {
-
           link.classList.add("active");
-
         }
 
-        if (
-          url === "/" &&
-          href === "/"
-        ) {
-
+        if (url === "/" && href === "/") {
           link.classList.add("active");
-
         }
 
       });
@@ -165,68 +134,41 @@
     }
 
 
-    /*
-     * Intercept only navigation-menu clicks.
-     */
+    document.addEventListener("click", function (event) {
 
-    document.addEventListener(
-      "click",
-      function (event) {
+      const link =
+        event.target.closest(".custom-nav a");
 
-        const link =
-          event.target.closest(".custom-nav a");
+      if (!link) return;
 
-        if (!link) return;
+      const href = link.getAttribute("href");
 
-        const href =
-          link.getAttribute("href");
+      if (!href) return;
 
-        if (!href) return;
-
-        /*
-         * Do not intercept PDFs/external links.
-         */
-
-        if (
-          link.target === "_blank" ||
-          href.endsWith(".pdf") ||
-          href.startsWith("http")
-        ) {
-          return;
-        }
-
-        event.preventDefault();
-
-        loadPage(href);
-
+      if (
+        link.target === "_blank" ||
+        href.endsWith(".pdf") ||
+        href.startsWith("http")
+      ) {
+        return;
       }
-    );
+
+      event.preventDefault();
+
+      loadPage(href);
+
+    });
 
 
-    /*
-     * Browser back / forward buttons.
-     */
+    window.addEventListener("popstate", function () {
 
-    window.addEventListener(
-      "popstate",
-      function () {
+      loadPage(
+        window.location.pathname,
+        false
+      );
 
-        loadPage(
-          window.location.pathname,
-          false
-        );
+    });
 
-      }
-    );
-
-
-    /*
-     * PRELOAD main pages.
-     *
-     * This is important for the seamless feeling:
-     * the pages are normally already downloaded
-     * before you click them.
-     */
 
     const pagesToPreload = [
       "/",

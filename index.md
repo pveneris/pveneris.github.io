@@ -236,42 +236,6 @@ hr {
 }
 
 
-/* ==================================================
-   FEATURE BLOCKS
-   ================================================== */
-
-.feature-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
-  margin-top: 15px;
-  margin-bottom: 50px;
-}
-
-.feature-block h3 {
-  color: #ffffff !important;
-  margin-top: 0;
-  margin-bottom: 10px;
-  border-bottom: none !important;
-}
-
-.feature-block p {
-  color: #cfcfcf;
-  line-height: 1.55;
-  font-size: 0.92em;
-  margin-bottom: 12px;
-}
-
-.feature-link {
-  color: #4da3c7 !important;
-  text-decoration: none !important;
-  font-weight: 600;
-}
-
-.feature-link:hover {
-  color: #79c4e3 !important;
-}
-
 
 /* ==================================================
    MOBILE
@@ -561,79 +525,6 @@ hr {
   <div class="interest-item">
     Financial Frictions
   </div>
-
-</div>
-
-
-<!-- ==================================================
-     FEATURE SECTIONS
-     ================================================== -->
-
-<div class="feature-grid">
-
-
-  <!-- RECENT WORK -->
-
-  <div class="feature-block">
-
-    <h3>Recent Work</h3>
-
-    <p>
-      My current work studies central bank digital currencies,
-      financial frictions, and international spillovers.
-    </p>
-
-    <a
-      href="/research/"
-      class="feature-link"
-    >
-      View Working Papers →
-    </a>
-
-  </div>
-
-
-  <!-- RESEARCH -->
-
-  <div class="feature-block">
-
-    <h3>Research</h3>
-
-    <p>
-      My research spans quantitative macroeconomics,
-      monetary economics, macro-finance, and international economics.
-    </p>
-
-    <a
-      href="/research/"
-      class="feature-link"
-    >
-      View Research →
-    </a>
-
-  </div>
-
-
-  <!-- TEACHING -->
-
-  <div class="feature-block">
-
-    <h3>Teaching</h3>
-
-    <p>
-      Teaching materials and information related to economics
-      and quantitative methods.
-    </p>
-
-    <a
-      href="/teaching/"
-      class="feature-link"
-    >
-      View Teaching →
-    </a>
-
-  </div>
-
 
 </div>
 

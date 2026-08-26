@@ -190,3 +190,48 @@ body {
   }
 
 }
+
+
+/* ==================================================
+   SMOOTH PAGE TRANSITIONS
+   ================================================== */
+
+@view-transition {
+  navigation: auto;
+}
+
+.masthead {
+  view-transition-name: site-header;
+}
+
+#main {
+  view-transition-name: page-content;
+}
+
+::view-transition-old(page-content) {
+  animation: 0.15s ease-out both fade-out;
+}
+
+::view-transition-new(page-content) {
+  animation: 0.20s ease-in both fade-in;
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

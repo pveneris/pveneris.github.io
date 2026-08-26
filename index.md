@@ -24,19 +24,9 @@ body {
   background-color: #000 !important;
 }
 
-/* Navigation bar */
-.masthead,
-.masthead__inner-wrap,
-.greedy-nav,
-.greedy-nav .visible-links {
-  background-color: #000 !important;
-}
-
-.greedy-nav a,
-.site-title,
-.masthead a {
-  color: #ffffff !important;
-  text-decoration: none !important;
+/* Hide original theme navigation */
+.masthead {
+  display: none !important;
 }
 
 /* General links */
@@ -58,6 +48,52 @@ hr {
 
 
 /* ==================================================
+   CUSTOM TOP NAVIGATION
+   ================================================== */
+
+.custom-nav {
+  width: 100%;
+  background-color: #000;
+  border-bottom: 1px solid #333;
+}
+
+.custom-nav-inner {
+  max-width: 930px;
+  height: 70px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.custom-nav-name {
+  color: #ffffff !important;
+  font-size: 1.05em;
+  font-weight: 700;
+  text-decoration: none !important;
+}
+
+.custom-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+}
+
+.custom-nav-links a {
+  color: #ffffff !important;
+  text-decoration: none !important;
+  font-size: 0.85em;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.custom-nav-links a:hover {
+  color: #4da3c7 !important;
+}
+
+
+/* ==================================================
    MAIN HOMEPAGE CONTAINER
    ================================================== */
 
@@ -75,7 +111,7 @@ hr {
   display: flex;
   align-items: center;
   gap: 36px;
-  margin-top: 25px;
+  margin-top: 45px;
   margin-bottom: 30px;
 }
 
@@ -236,8 +272,26 @@ hr {
 
 @media (max-width: 700px) {
 
+  .custom-nav-inner {
+    padding: 0 18px;
+  }
+
+  .custom-nav-links {
+    gap: 12px;
+  }
+
+  .custom-nav-links a {
+    font-size: 0.68em;
+  }
+
+  .custom-nav-name {
+    font-size: 0.88em;
+  }
+
   .home-container {
-    width: 100%;
+    width: auto;
+    margin-left: 18px;
+    margin-right: 18px;
   }
 
   .profile-section {
@@ -264,6 +318,47 @@ hr {
 
 </style>
 
+
+<!-- ==================================================
+     TOP NAVIGATION
+     ================================================== -->
+
+<nav class="custom-nav">
+
+  <div class="custom-nav-inner">
+
+    <a href="/" class="custom-nav-name">
+      Panagiotis Veneris
+    </a>
+
+    <div class="custom-nav-links">
+
+      <a href="/research/">
+        Research
+      </a>
+
+      <a href="/research/">
+        Publications
+      </a>
+
+      <a href="/teaching/">
+        Teaching
+      </a>
+
+      <a href="/files/Veneris_CV.pdf" target="_blank">
+        Vitae
+      </a>
+
+    </div>
+
+  </div>
+
+</nav>
+
+
+<!-- ==================================================
+     MAIN CONTENT
+     ================================================== -->
 
 <div class="home-container">
 
@@ -298,6 +393,7 @@ hr {
     <div class="profile-links">
 
       <!-- Email -->
+
       <a
         href="mailto:pveneris@hotmail.gr"
         title="Email"
@@ -307,6 +403,7 @@ hr {
 
 
       <!-- CV -->
+
       <div class="cv-group">
 
         <a
@@ -330,6 +427,7 @@ hr {
 
 
       <!-- Google Scholar -->
+
       <a
         href="YOUR_GOOGLE_SCHOLAR_URL"
         title="Google Scholar"
@@ -340,6 +438,7 @@ hr {
 
 
       <!-- Twitter -->
+
       <a
         href="https://x.com/PanagiotisVene1"
         title="Twitter / X"
@@ -350,6 +449,7 @@ hr {
 
 
       <!-- GitHub -->
+
       <a
         href="https://github.com/pveneris/NumericalMethods"
         title="GitHub"
@@ -419,6 +519,7 @@ hr {
 <h2 class="section-title">
   Research Interests
 </h2>
+
 
 <div class="interests-grid">
 

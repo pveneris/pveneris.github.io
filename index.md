@@ -48,59 +48,6 @@ hr {
 
 
 /* ==================================================
-   CUSTOM TOP NAVIGATION
-   ================================================== */
-
-.custom-nav {
-  width: 100%;
-  background-color: #000;
-  border-bottom: 1px solid #333;
-}
-
-.custom-nav-inner {
-  max-width: 930px;
-  height: 70px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.custom-nav-name {
-  color: #ffffff !important;
-  font-size: 1.05em;
-  font-weight: 700;
-  text-decoration: none !important;
-}
-
-.custom-nav-links {
-  display: flex;
-  align-items: center;
-  gap: 35px;
-}
-
-.custom-nav-links a {
-  color: #ffffff !important;
-  text-decoration: none !important;
-  font-size: 0.85em;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  padding: 10px 8px;
-}
-
-/* Yellow when hovering */
-.custom-nav-links a:hover {
-  color: #ffd700 !important;
-}
-
-/* Yellow for the currently selected page */
-.custom-nav-links a.active {
-  color: #ffd700 !important;
-}
-
-
-/* ==================================================
    MAIN HOMEPAGE CONTAINER
    ================================================== */
 
@@ -288,51 +235,6 @@ hr {
 }
 
 </style>
-
-
-<!-- ==================================================
-     TOP NAVIGATION
-     ================================================== -->
-
-<nav class="custom-nav">
-
-  <div class="custom-nav-inner">
-
-    <a href="/" class="custom-nav-name">
-      Panagiotis Veneris
-    </a>
-
-    <div class="custom-nav-links">
-
-      <a href="/"
-         class="{% if page.url == '/' %}active{% endif %}">
-        Home
-      </a>
-
-      <a href="/research/"
-         class="{% if page.url == '/research/' %}active{% endif %}">
-        Research
-      </a>
-
-      <a href="/publications/"
-         class="{% if page.url == '/publications/' %}active{% endif %}">
-        Publications
-      </a>
-
-      <a href="/teaching/"
-         class="{% if page.url == '/teaching/' %}active{% endif %}">
-        Teaching
-      </a>
-
-      <a href="/files/Veneris_CV.pdf" target="_blank">
-        Vitae
-      </a>
-
-    </div>
-
-  </div>
-
-</nav>
 
 
 <!-- ==================================================

@@ -64,25 +64,60 @@ permalink: /research/
   margin-bottom: 12px;
 }
 
-.paper-description {
-  color: #d0d0d0;
-  font-size: 0.94em;
-  line-height: 1.65;
-  max-width: 850px;
-}
-
 .paper-links {
   margin-top: 12px;
 }
 
-.paper-links a {
-  color: #4da3c7 !important;
-  text-decoration: none !important;
-  margin-right: 16px;
+
+/* ==================================================
+   ABSTRACT BUTTON
+   ================================================== */
+
+.abstract-button {
+  background: transparent;
+  border: 1px solid #333;
+  color: #d4af37;
+
+  padding: 6px 12px;
+  border-radius: 3px;
+
+  font-size: 0.9em;
+  font-family: inherit;
+
+  cursor: pointer;
 }
 
-.paper-links a:hover {
-  color: #79c4e3 !important;
+.abstract-button:hover {
+  border-color: #d4af37;
+  color: #ffd700;
+}
+
+
+/* ==================================================
+   ABSTRACT PANEL
+   ================================================== */
+
+.paper-abstract {
+  display: none;
+
+  margin-top: 16px;
+  padding: 18px 20px;
+
+  max-width: 850px;
+
+  background-color: #181b21;
+
+  border-left: 2px solid #d4af37;
+  border-radius: 3px;
+
+  color: #cfcfcf;
+
+  font-size: 0.94em;
+  line-height: 1.7;
+}
+
+.paper-abstract.open {
+  display: block;
 }
 
 
@@ -102,12 +137,21 @@ permalink: /research/
 
 <div class="research-container">
 
+
+  <!-- ==================================================
+       WORKING & SUBMITTED PAPERS
+       ================================================== -->
+
   <h2 class="research-heading">
     Working &amp; Submitted Papers
   </h2>
 
   <hr class="section-line">
 
+
+  <!-- ==================================================
+       CBDC PAPER
+       ================================================== -->
 
   <div class="paper-item">
 
@@ -119,11 +163,26 @@ permalink: /research/
 
     </div>
 
+
     <div class="paper-meta">
       Working Paper
     </div>
 
-    <div class="paper-description">
+
+    <div class="paper-links">
+
+      <button
+        type="button"
+        class="abstract-button"
+        onclick="toggleAbstract(this)"
+      >
+        Abstract
+      </button>
+
+    </div>
+
+
+    <div class="paper-abstract">
 
       This paper analyzes the cross-border spillover effects of central bank
       digital currency (CBDC). In a two-country model of the financial
@@ -135,16 +194,12 @@ permalink: /research/
 
     </div>
 
-    <div class="paper-links">
-
-      <a href="/files/CBDCS_03042026.pdf" target="_blank">
-        Paper →
-      </a>
-
-    </div>
-
   </div>
 
+
+  <!-- ==================================================
+       WORK IN PROGRESS
+       ================================================== -->
 
   <h2 class="research-heading secondary">
     Work in Progress
@@ -161,4 +216,20 @@ permalink: /research/
     Project Title 2
   </div>
 
+
 </div>
+
+
+<script>
+
+function toggleAbstract(button) {
+
+  const paper = button.closest(".paper-item");
+
+  const abstract = paper.querySelector(".paper-abstract");
+
+  abstract.classList.toggle("open");
+
+}
+
+</script>

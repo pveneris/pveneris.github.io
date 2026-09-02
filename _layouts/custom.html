@@ -28,62 +28,41 @@
     const contentContainer =
       document.querySelector(".custom-page-content");
 
-    const pageCache = new Map();
-
 
     /* ==================================================
-       PAGE CACHE
-       ================================================== */
-
-    async function getPage(url) {
-
-      if (pageCache.has(url)) {
-        return pageCache.get(url);
-      }
-
-      const response = await fetch(url);
-
-      if (!response.ok) {
-        throw new Error("Could not load " + url);
-      }
-
-      const html = await response.text();
-
-      const parser = new DOMParser();
-
-      const newDocument =
-        parser.parseFromString(html, "text/html");
-
-      const newContent =
-        newDocument.querySelector(".custom-page-content");
-
-      if (!newContent) {
-        throw new Error("Page content not found");
-      }
-
-      const contentHTML = newContent.innerHTML;
-
-      pageCache.set(url, contentHTML);
-
-      return contentHTML;
-    }
-
-
-    /* ==================================================
-       SMOOTH PAGE LOADING
+       LOAD PAGE
        ================================================== */
 
     async function loadPage(url, addToHistory = true) {
 
       try {
 
-        const newHTML = await getPage(url);
+        const response = await fetch(url);
+
+        if (!response.ok) {
+          throw new Error("Could not load " + url);
+        }
+
+        const html = await response.text();
+
+        const parser = new DOMParser();
+
+        const newDocument =
+          parser.parseFromString(html, "text/html");
+
+        const newContent =
+          newDocument.querySelector(".custom-page-content");
+
+        if (!newContent) {
+          throw new Error("Page content not found");
+        }
 
         contentContainer.classList.add("content-changing");
 
         requestAnimationFrame(function () {
 
-          contentContainer.innerHTML = newHTML;
+          contentContainer.innerHTML =
+            newContent.innerHTML;
 
           if (addToHistory) {
             history.pushState({}, "", url);
@@ -92,7 +71,11 @@
           updateActiveNavigation(url);
 
           requestAnimationFrame(function () {
-            contentContainer.classList.remove("content-changing");
+
+            contentContainer.classList.remove(
+              "content-changing"
+            );
+
           });
 
         });
@@ -100,7 +83,9 @@
       }
 
       catch (error) {
+
         window.location.href = url;
+
       }
 
     }
@@ -119,13 +104,10 @@
 
         link.classList.remove("active");
 
-        const href = link.getAttribute("href");
+        const href =
+          link.getAttribute("href");
 
         if (!href) return;
-
-        if (href === "/files/Veneris_CV.pdf") {
-          return;
-        }
 
         if (
           url === href ||
@@ -137,7 +119,10 @@
           link.classList.add("active");
         }
 
-        if (url === "/" && href === "/") {
+        if (
+          url === "/" &&
+          href === "/"
+        ) {
           link.classList.add("active");
         }
 
@@ -147,7 +132,7 @@
 
 
     /* ==================================================
-       ABSTRACT BUTTONS
+       ABSTRACT BUTTON
        ================================================== */
 
     document.addEventListener("click", function (event) {
@@ -167,20 +152,39 @@
 
       if (!abstract) return;
 
-      const opening = abstract.hidden;
+      const isHidden =
+        abstract.hasAttribute("hidden");
 
-      abstract.hidden = !opening;
+      if (isHidden) {
 
-      button.setAttribute(
-        "aria-expanded",
-        opening ? "true" : "false"
-      );
+        abstract.removeAttribute("hidden");
+
+        button.setAttribute(
+          "aria-expanded",
+          "true"
+        );
+
+      }
+
+      else {
+
+        abstract.setAttribute(
+          "hidden",
+          ""
+        );
+
+        button.setAttribute(
+          "aria-expanded",
+          "false"
+        );
+
+      }
 
     });
 
 
     /* ==================================================
-       NAVIGATION CLICKS
+       NAVIGATION
        ================================================== */
 
     document.addEventListener("click", function (event) {
@@ -190,9 +194,15 @@
 
       if (!link) return;
 
-      const href = link.getAttribute("href");
+      const href =
+        link.getAttribute("href");
 
       if (!href) return;
+
+      /*
+       * Allow PDFs, external links and links opening
+       * in a new tab to behave normally.
+       */
 
       if (
         link.target === "_blank" ||
@@ -219,30 +229,6 @@
         window.location.pathname,
         false
       );
-
-    });
-
-
-    /* ==================================================
-       PRELOAD PAGES
-       ================================================== */
-
-    const pagesToPreload = [
-      "/",
-      "/research/",
-      "/publications/",
-      "/vitae/"
-    ];
-
-    pagesToPreload.forEach(function (url) {
-
-      if (url !== window.location.pathname) {
-
-        getPage(url).catch(function () {
-          /* Ignore preload failures */
-        });
-
-      }
 
     });
 

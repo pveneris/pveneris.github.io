@@ -89,7 +89,6 @@ permalink: /research/
    ================================================== */
 
 .paper-abstract {
-  display: none;
   margin-top: 16px;
   padding: 18px 20px;
   max-width: 850px;
@@ -101,8 +100,8 @@ permalink: /research/
   line-height: 1.7;
 }
 
-.paper-abstract.open {
-  display: block;
+.paper-abstract[hidden] {
+  display: none !important;
 }
 
 
@@ -153,13 +152,13 @@ permalink: /research/
       <button
         type="button"
         class="abstract-button"
-        onclick="toggleAbstract(this)"
+        aria-expanded="false"
       >
         Abstract
       </button>
     </div>
 
-    <div class="paper-abstract">
+    <div class="paper-abstract" hidden>
 
       This paper analyzes the cross-border spillover effects of central bank
       digital currency (CBDC). In a two-country model of the financial
@@ -193,13 +192,13 @@ permalink: /research/
       <button
         type="button"
         class="abstract-button"
-        onclick="toggleAbstract(this)"
+        aria-expanded="false"
       >
         Abstract
       </button>
     </div>
 
-    <div class="paper-abstract">
+    <div class="paper-abstract" hidden>
 
       This paper analyzes the interaction between credit tightening and
       inequality. In a standard New-Keynesian model with financial frictions
@@ -239,13 +238,13 @@ permalink: /research/
       <button
         type="button"
         class="abstract-button"
-        onclick="toggleAbstract(this)"
+        aria-expanded="false"
       >
         Abstract
       </button>
     </div>
 
-    <div class="paper-abstract">
+    <div class="paper-abstract" hidden>
 
       This paper studies the impact of recursive utility on household behavior
       in an otherwise standard model of incomplete markets and heterogeneous
@@ -282,18 +281,3 @@ permalink: /research/
 
 
 </div>
-
-
-<script>
-
-function toggleAbstract(button) {
-
-  const paper = button.closest(".paper-item");
-
-  const abstract = paper.querySelector(".paper-abstract");
-
-  abstract.classList.toggle("open");
-
-}
-
-</script>

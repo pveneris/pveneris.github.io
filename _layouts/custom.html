@@ -31,6 +31,10 @@
     const pageCache = new Map();
 
 
+    /* ==================================================
+       PAGE CACHE
+       ================================================== */
+
     async function getPage(url) {
 
       if (pageCache.has(url)) {
@@ -65,6 +69,10 @@
     }
 
 
+    /* ==================================================
+       SMOOTH PAGE LOADING
+       ================================================== */
+
     async function loadPage(url, addToHistory = true) {
 
       try {
@@ -97,6 +105,10 @@
 
     }
 
+
+    /* ==================================================
+       ACTIVE NAVIGATION
+       ================================================== */
 
     function updateActiveNavigation(url) {
 
@@ -134,6 +146,43 @@
     }
 
 
+    /* ==================================================
+       ABSTRACT BUTTONS
+       ================================================== */
+
+    document.addEventListener("click", function (event) {
+
+      const button =
+        event.target.closest(".abstract-button");
+
+      if (!button) return;
+
+      const paper =
+        button.closest(".paper-item");
+
+      if (!paper) return;
+
+      const abstract =
+        paper.querySelector(".paper-abstract");
+
+      if (!abstract) return;
+
+      const opening = abstract.hidden;
+
+      abstract.hidden = !opening;
+
+      button.setAttribute(
+        "aria-expanded",
+        opening ? "true" : "false"
+      );
+
+    });
+
+
+    /* ==================================================
+       NAVIGATION CLICKS
+       ================================================== */
+
     document.addEventListener("click", function (event) {
 
       const link =
@@ -160,6 +209,10 @@
     });
 
 
+    /* ==================================================
+       BROWSER BACK / FORWARD
+       ================================================== */
+
     window.addEventListener("popstate", function () {
 
       loadPage(
@@ -170,12 +223,16 @@
     });
 
 
+    /* ==================================================
+       PRELOAD PAGES
+       ================================================== */
+
     const pagesToPreload = [
-  "/",
-  "/research/",
-  "/publications/",
-  "/vitae/"
-];
+      "/",
+      "/research/",
+      "/publications/",
+      "/vitae/"
+    ];
 
     pagesToPreload.forEach(function (url) {
 
